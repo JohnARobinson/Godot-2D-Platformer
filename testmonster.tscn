@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/JR assets and idea's/bricks.png" type="Texture" id=1]
+[ext_resource path="res://testmonster.gd" type="Script" id=2]
+[ext_resource path="res://starpowerup.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1113.58, 52.0519 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 27.9275, 123.617 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 121.019, 82.3742 )
+
+[node name="testmonstermove" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="maybe powerup star - Copy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 280.512, 583.569 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 1041.44, 559.053 )
+scale = Vector2( 4.41921, 0.224672 )
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1115.05, 562.703 )
+shape = SubResource( 1 )
+
+[node name="left" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="left"]
+position = Vector2( 24.07, 397.523 )
+scale = Vector2( 0.115375, 0.568563 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left"]
+position = Vector2( 22.2311, 407.764 )
+shape = SubResource( 2 )
+
+[node name="right" type="StaticBody2D" parent="."]
+position = Vector2( 936.708, 424.731 )
+
+[node name="Sprite" type="Sprite" parent="right"]
+position = Vector2( -0.913086, 6.30151 )
+scale = Vector2( 0.47234, 0.404467 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right"]
+position = Vector2( 9.26361, 6.89323 )
+shape = SubResource( 3 )

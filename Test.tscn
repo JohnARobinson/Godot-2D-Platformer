@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/daniel_big.png" type="Texture" id=1]
+[ext_resource path="res://resources/PCMan/pcm_shoot_big.png" type="Texture" id=2]
+[ext_resource path="res://resources/PCMan/rt_cat_big.png" type="Texture" id=3]
+[ext_resource path="res://resources/bricks/blue_brick_big.png" type="Texture" id=4]
+[ext_resource path="res://Test.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 120, 120 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="StaticBody2D" parent="."]
+position = Vector2( 72, 526 )
+
+[node name="Sprite" type="Sprite" parent="Sprite"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite"]
+shape = SubResource( 1 )
+
+[node name="Sprite3" type="StaticBody2D" parent="."]
+position = Vector2( 72, 526 )
+
+[node name="Sprite" type="Sprite" parent="Sprite3"]
+position = Vector2( 225, -155 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite3"]
+position = Vector2( 225, -155 )
+shape = SubResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 875, 357 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 905.357, 81.5 )
+scale = Vector2( 0.892857, 0.892857 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 672, 56 )
+texture = ExtResource( 1 )
+flip_h = true

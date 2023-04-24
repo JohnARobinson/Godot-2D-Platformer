@@ -1,0 +1,126 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://resources/JR assets and idea's/sounds/8bit talking.ogg" type="AudioStream" id=1]
+[ext_resource path="res://resources/JR assets and idea's/robot npc.png" type="Texture" id=2]
+[ext_resource path="res://NPC.gd" type="Script" id=3]
+[ext_resource path="res://resources/JR assets and idea's/quest2.png" type="Texture" id=4]
+[ext_resource path="res://resources/JR assets and idea's/textbox.png" type="Texture" id=5]
+[ext_resource path="res://resources/JR assets and idea's/angrybot2.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 320, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 640, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 960, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 320, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 320, 320, 320, 320 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "ded",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 25.4399, 39.0086 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 45.6187, 107.883 )
+
+[node name="RobotNPC" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="robonpc" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 7 )
+animation = "ded"
+playing = true
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.914066, 1.28629 )
+shape = SubResource( 8 )
+
+[node name="talk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -15.0
+
+[node name="Talkbox" type="Sprite" parent="."]
+position = Vector2( -31.3512, -40.0819 )
+scale = Vector2( 2.46529, 2.28676 )
+texture = ExtResource( 5 )
+
+[node name="NotTalk" type="Sprite" parent="."]
+position = Vector2( 2.18269, -42.8598 )
+scale = Vector2( 1.15737, 1.22463 )
+texture = ExtResource( 4 )
+
+[node name="talkingdistance" type="Area2D" parent="."]
+
+[node name="talkbox" type="CollisionShape2D" parent="talkingdistance"]
+position = Vector2( -105.813, -71.4023 )
+shape = SubResource( 9 )
+
+[node name="talktime" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Talky" type="RichTextLabel" parent="."]
+margin_left = -148.0
+margin_top = -115.0
+margin_right = 159.0
+margin_bottom = -87.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="presse" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -157.19
+margin_top = -249.556
+margin_right = 137.81
+margin_bottom = -176.556
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="movestuff" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -1481.15
+margin_top = -351.512
+margin_right = -912.145
+margin_bottom = -311.512
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="talkingdistance" to="." method="_on_talkingdistance_body_entered"]
+[connection signal="timeout" from="talktime" to="." method="_on_talktime_timeout"]

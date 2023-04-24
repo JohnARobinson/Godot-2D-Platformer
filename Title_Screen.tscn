@@ -1,0 +1,303 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://resources/PCMan/pcm_idle_big.png" type="Texture" id=1]
+[ext_resource path="res://resources/title/Logo_big.png" type="Texture" id=2]
+[ext_resource path="res://resources/title/title_building_big.png" type="Texture" id=3]
+[ext_resource path="res://resources/title/controls_text.png" type="Texture" id=4]
+[ext_resource path="res://resources/title/start_text.png" type="Texture" id=5]
+[ext_resource path="res://resources/title/controls.png" type="Texture" id=6]
+[ext_resource path="res://resources/title/credits_text.png" type="Texture" id=7]
+[ext_resource path="res://resources/title/back_big.png" type="Texture" id=8]
+[ext_resource path="res://Title_Screen.gd" type="Script" id=9]
+[ext_resource path="res://resources/fonts/ChiKareGo2.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://resources/sounds/music/Shaq Fu - Track 16.wav" type="AudioStream" id=11]
+[ext_resource path="res://resources/sounds/soundeffects/270335__littlerobotsoundfactory__shoot-03.wav" type="AudioStream" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.117647, 0.117647, 0.117647, 1, 0.117647, 0.117647, 0.117647, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 10 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="Logo" type="Sprite" parent="."]
+position = Vector2( 323, 106 )
+scale = Vector2( 0.405714, 0.405714 )
+texture = ExtResource( 2 )
+
+[node name="PCMan" type="AnimatedSprite" parent="."]
+position = Vector2( 279.5, 357 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="Building" type="Sprite" parent="."]
+position = Vector2( 267, 508 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 661.295, 304.294 )
+scale = Vector2( 0.696659, 684 )
+z_index = -1
+texture = SubResource( 3 )
+
+[node name="Start" type="Button" parent="."]
+margin_left = 687.573
+margin_top = 183.503
+margin_right = 871.573
+margin_bottom = 255.503
+action_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Start"]
+position = Vector2( 92.9143, 34.373 )
+scale = Vector2( 0.320981, 0.320981 )
+texture = ExtResource( 5 )
+
+[node name="Back" type="Button" parent="."]
+margin_left = 573.795
+margin_top = 152.606
+margin_right = 652.795
+margin_bottom = 224.606
+action_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Back"]
+position = Vector2( 39.8221, 35.4324 )
+scale = Vector2( 0.320981, 0.320981 )
+texture = ExtResource( 8 )
+
+[node name="Controls" type="Button" parent="."]
+margin_left = 630.87
+margin_top = 272.2
+margin_right = 927.87
+margin_bottom = 344.2
+action_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Controls"]
+position = Vector2( 146.887, 34.4325 )
+scale = Vector2( 0.320981, 0.320981 )
+texture = ExtResource( 4 )
+
+[node name="Credits" type="Button" parent="."]
+margin_left = 631.929
+margin_top = 363.195
+margin_right = 928.929
+margin_bottom = 435.195
+action_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Credits"]
+position = Vector2( 146.887, 34.4325 )
+scale = Vector2( 0.320981, 0.320981 )
+texture = ExtResource( 7 )
+
+[node name="Keyboard" type="Sprite" parent="."]
+position = Vector2( 781.193, 408.423 )
+scale = Vector2( 0.261058, 0.261058 )
+texture = ExtResource( 6 )
+
+[node name="Space_controls" type="RichTextLabel" parent="."]
+margin_left = 659.0
+margin_top = 506.0
+margin_right = 902.0
+margin_bottom = 531.0
+custom_fonts/mono_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 0.101961, 0.101961, 1 )
+tab_size = 8
+text = " Space fires PCMan's memes"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Move_controls" type="RichTextLabel" parent="."]
+margin_left = 519.0
+margin_top = 338.0
+margin_right = 728.0
+margin_bottom = 359.0
+custom_fonts/mono_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 0.101961, 0.101961, 1 )
+tab_size = 8
+text = "Left/Right moves PCMan"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Talk_controls" type="RichTextLabel" parent="."]
+margin_left = 832.234
+margin_top = 339.854
+margin_right = 1067.23
+margin_bottom = 360.854
+custom_fonts/mono_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 0.101961, 0.101961, 1 )
+tab_size = 8
+text = "Down interacts"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Jump_controls" type="RichTextLabel" parent="."]
+margin_left = 684.238
+margin_top = 280.606
+margin_right = 880.238
+margin_bottom = 301.606
+custom_fonts/mono_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 0.101961, 0.101961, 1 )
+tab_size = 8
+text = "Up makes PCMan jump"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Credits_text" type="RichTextLabel" parent="."]
+margin_left = 662.333
+margin_top = 254.364
+margin_right = 941.333
+margin_bottom = 438.364
+custom_fonts/mono_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 0.101961, 0.101961, 1 )
+tab_size = 8
+text = "Game by: Adam Weissinger, 
+             John Robinson,
+	     and Ian Royer
+		
+Music from: Youtube.com
+                  retro.sx
+
+Art by: Adam Weissinger,
+	   opengameart.org"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Volume_text" type="RichTextLabel" parent="."]
+margin_left = 750.222
+margin_top = 483.845
+margin_right = 946.222
+margin_bottom = 543.845
+custom_fonts/mono_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 0.101961, 0.101961, 1 )
+tab_size = 8
+text = " Music
+
+Sounds"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Highscore" type="RichTextLabel" parent="."]
+margin_left = 699.914
+margin_top = 4.74563
+margin_right = 785.914
+margin_bottom = 23.7456
+rect_scale = Vector2( 2, 2 )
+custom_fonts/normal_font = SubResource( 6 )
+text = "High Score:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScore_Value" type="RichTextLabel" parent="."]
+margin_left = 855.969
+margin_top = 7.0
+margin_right = 926.969
+margin_bottom = 24.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/normal_font = SubResource( 7 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Volume_m" type="HSlider" parent="."]
+margin_left = 647.405
+margin_top = 498.573
+margin_right = 910.405
+margin_bottom = 529.573
+step = 10.0
+value = 50.0
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Volume_s" type="HSlider" parent="."]
+margin_left = 647.405
+margin_top = 538.848
+margin_right = 910.405
+margin_bottom = 571.848
+step = 10.0
+value = 50.0
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+autoplay = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Controls" to="." method="_on_Controls_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
+[connection signal="value_changed" from="Volume_m" to="." method="_on_Volume_m_value_changed"]
+[connection signal="value_changed" from="Volume_s" to="." method="_on_Volume_s_value_changed"]

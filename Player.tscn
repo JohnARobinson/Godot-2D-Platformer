@@ -1,0 +1,158 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://resources/PCMan/pcm_run2_big.png" type="Texture" id=1]
+[ext_resource path="res://resources/PCMan/pcm_shoot_big.png" type="Texture" id=2]
+[ext_resource path="res://resources/PCMan/pcm_run3_big.png" type="Texture" id=3]
+[ext_resource path="res://resources/PCMan/pcm_run1_big.png" type="Texture" id=4]
+[ext_resource path="res://resources/PCMan/pcm_jump_big.png" type="Texture" id=5]
+[ext_resource path="res://resources/PCMan/pcm_idle_big.png" type="Texture" id=6]
+[ext_resource path="res://Player.gd" type="Script" id=7]
+[ext_resource path="res://resources/warpcity/warped city files/warped city files/ENVIRONMENT/tile1.png" type="Texture" id=8]
+[ext_resource path="res://resources/sounds/soundeffects/270335__littlerobotsoundfactory__shoot-03.wav" type="AudioStream" id=9]
+[ext_resource path="res://resources/PCMan/pcm_hurt_big.png" type="Texture" id=10]
+[ext_resource path="res://resources/Explosion/explosion.png" type="Texture" id=11]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 240, 0, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 480, 0, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 720, 0, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 960, 0, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 1200, 0, 240, 240 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), null, ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Hurt",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), null, null, null, null, null, null, null, null, null, null, null ],
+"loop": false,
+"name": "Die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Shoot",
+"speed": 1.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 62.8242, 59.7449 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 38.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -280.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 1
+emission_sphere_radius = 75.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 196, 0 )
+initial_velocity = 103.45
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 63, 60 )
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+script = ExtResource( 7 )
+
+[node name="PCMan_Node" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 7 )
+animation = "Idle"
+playing = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.45, 0.45 )
+
+[node name="Walking" type="Particles2D" parent="."]
+position = Vector2( -30, 60 )
+emitting = false
+process_material = SubResource( 9 )
+texture = ExtResource( 8 )
+
+[node name="Land" type="Particles2D" parent="."]
+position = Vector2( 1.7839, 56.8216 )
+emitting = false
+amount = 12
+lifetime = 0.8
+one_shot = true
+speed_scale = 1.69
+explosiveness = 1.0
+visibility_rect = Rect2( -100, -100, 200, 100 )
+process_material = SubResource( 10 )
+texture = ExtResource( 8 )
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="Safe" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+scale = Vector2( 1.01, 1.01 )
+shape = SubResource( 11 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Safe" to="." method="_on_Safe_timeout"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
